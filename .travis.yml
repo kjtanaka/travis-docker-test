@@ -1,0 +1,13 @@
+language: python
+python:
+  - 2.7
+
+services:
+  - docker
+
+install:
+  - docker build -t centos_6 .
+  - docker run -d -p 127.0.0.1:222:22 --name centos6c1 centos_6
+
+script:
+  - docker ps | grep -q centos6c1
